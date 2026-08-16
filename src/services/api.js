@@ -1,3 +1,5 @@
+import { generateStorybookPdf } from './pdfExportService';
+
 const getApiBaseUrl = () => {
   if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
   if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
@@ -92,27 +94,50 @@ export const api = {
   // PDF Export Download URL Helper
   getStoryPdfUrl: (storyId) => `${API_BASE_URL}/stories/${storyId}/pdf`,
 
-  downloadPdf: async (storyId, filename = 'Storybook.pdf') => {
-    const token = localStorage.getItem('storybook_token');
-    const response = await fetch(`${API_BASE_URL}/stories/${storyId}/pdf`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  downloadPdf: async (storyOrId, filename) => {
+    try {
+      let story = storyOrId;
+      if (typeof storyOrId === 'string') {
+        const res = await api.getStory(storyOrId);
+        if (res.success && res.story) {
+          story = res.story;
+        } else {
+          throw new Error('Storybook data not found');
+        }
+      }
 
-    if (!response.ok) {
-      const errJson = await response.json().catch(() => ({}));
-      throw new Error(errJson.message || 'Failed to download PDF');
+      const safeName =
+        filename || `${story.title ? story.title.replace(/[^a-zA-Z0-9_-]/g, '_') : 'Storybook'}_Storybook.pdf`;
+
+      // 1. Generate client-side PDF using jsPDF (instant, robust, zero server timeout)
+      await generateStorybookPdf(story, safeName);
+      return true;
+    } catch (clientErr) {
+      console.warn('[PDF Export] Client-side generation fallback to server:', clientErr);
+
+      // 2. Server-side fallback stream
+      const storyId = typeof storyOrId === 'string' ? storyOrId : storyOrId._id;
+      const token = localStorage.getItem('storybook_token');
+      const response = await fetch(`${API_BASE_URL}/stories/${storyId}/pdf`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const errJson = await response.json().catch(() => ({}));
+        throw new Error(errJson.message || 'Failed to download PDF');
+      }
+
+      const blob = await response.blob();
+      const downloadUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = filename || 'Storybook.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(downloadUrl);
     }
-
-    const blob = await response.blob();
-    const downloadUrl = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = downloadUrl;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(downloadUrl);
   },
 };

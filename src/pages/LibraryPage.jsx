@@ -35,7 +35,7 @@ export const LibraryPage = () => {
 
   const handleDownloadPdf = async (story) => {
     try {
-      await api.downloadPdf(story._id, `${story.title.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`);
+      await api.downloadPdf(story, `${story.title ? story.title.replace(/[^a-zA-Z0-9_-]/g, '_') : 'Storybook'}_Storybook.pdf`);
     } catch (err) {
       alert(`Could not download PDF: ${err.message}`);
     }

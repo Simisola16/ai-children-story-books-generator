@@ -44,8 +44,8 @@ export const StoryReaderPage = () => {
     if (!story) return;
     setIsDownloadingPdf(true);
     try {
-      const filename = `${story.title.replace(/[^a-zA-Z0-9_-]/g, '_')}_Storybook.pdf`;
-      await api.downloadPdf(story._id, filename);
+      const filename = `${story.title ? story.title.replace(/[^a-zA-Z0-9_-]/g, '_') : 'Storybook'}_Storybook.pdf`;
+      await api.downloadPdf(story, filename);
     } catch (err) {
       alert(`PDF download failed: ${err.message}`);
     } finally {
