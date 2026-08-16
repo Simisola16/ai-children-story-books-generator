@@ -226,13 +226,13 @@ export const AvatarBuilder = ({ avatar, onChange }) => {
   };
 
   return (
-    <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-3 border-[#2E1F3D] shadow-parchment-card">
-      <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
+    <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-3 border-[#2E1F3D] shadow-parchment-card">
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start">
         {/* Live Preview Display */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-3 shrink-0">
           <div className="relative group">
-            <AvatarPreview avatar={avatar} size={180} />
-            <div className="absolute -bottom-3 bg-marigold text-ink font-bold text-xs uppercase px-3 py-1 rounded-full border border-ink shadow">
+            <AvatarPreview avatar={avatar} size={150} className="sm:w-[180px] sm:h-[180px]" />
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-marigold text-ink font-black text-[10px] sm:text-xs uppercase tracking-wider px-3 py-1 rounded-full border border-ink shadow whitespace-nowrap">
               Character Look
             </div>
           </div>
@@ -240,10 +240,10 @@ export const AvatarBuilder = ({ avatar, onChange }) => {
           <button
             type="button"
             onClick={randomizeAvatar}
-            className="mt-4 flex items-center gap-2 px-4 py-2 bg-parchment hover:bg-parchment-dark text-ink font-bold text-sm rounded-xl border-2 border-ink transition-colors"
+            className="mt-3 flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 bg-parchment hover:bg-parchment-dark text-ink font-bold text-xs sm:text-sm rounded-xl border-2 border-ink transition-colors shadow-sm"
           >
             <Wand2 className="w-4 h-4 text-berry" />
-            Randomize Look
+            <span>Randomize Look</span>
           </button>
         </div>
 
@@ -277,13 +277,13 @@ export const AvatarBuilder = ({ avatar, onChange }) => {
             <label className="block text-xs font-bold uppercase tracking-wider text-ink/70 mb-2">
               Hair Style
             </label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {HAIR_STYLES.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => updateField('hairStyle', item.id)}
-                  className={`py-1.5 px-3 rounded-xl text-xs font-bold border-2 transition-all text-center ${
+                  className={`py-2 px-3 rounded-xl text-xs font-bold border-2 transition-all text-center ${
                     avatar.hairStyle === item.id
                       ? 'bg-berry text-white border-berry shadow-sm'
                       : 'bg-parchment/40 text-ink border-ink/20 hover:border-ink/50'

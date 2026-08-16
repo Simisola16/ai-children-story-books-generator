@@ -86,7 +86,7 @@ export const LandingPage = () => {
                 <span>AI-Powered Picture Books for Children</span>
               </div>
 
-              <h1 className="font-display font-black text-4xl sm:text-6xl text-ink leading-[1.12] tracking-tight">
+              <h1 className="font-display font-black text-3xl sm:text-5xl lg:text-6xl text-ink leading-[1.15] tracking-tight">
                 Turn Your Child into the{' '}
                 <span className="text-berry underline decoration-marigold decoration-wavy decoration-2">
                   Hero of Their Own
@@ -94,18 +94,18 @@ export const LandingPage = () => {
                 Storybook.
               </h1>
 
-              <p className="font-reading text-lg sm:text-xl text-charcoal/90 leading-relaxed max-w-2xl">
+              <p className="font-reading text-base sm:text-xl text-charcoal/90 leading-relaxed max-w-2xl">
                 Create an illustrated character look, pick a wondrous theme, and
                 watch as our AI weaves a complete, personalized picture book with
                 page-matching art, interactive 3D page-turns, read-aloud storytelling,
                 and keepsake PDF prints.
               </p>
 
-              <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link
                   to="/register"
                   id="hero-create-story-btn"
-                  className="px-8 py-4 bg-berry hover:bg-berry-dark text-white font-black text-base rounded-2xl border-3 border-ink shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-berry hover:bg-berry-dark text-white font-black text-sm sm:text-base rounded-2xl border-3 border-ink shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2.5 sm:gap-3"
                 >
                   <Sparkles className="w-5 h-5 text-marigold fill-marigold" />
                   <span>Create Your First Story</span>
@@ -114,20 +114,20 @@ export const LandingPage = () => {
                 <Link
                   to="/login"
                   id="hero-sign-in-btn"
-                  className="px-8 py-4 bg-[#FFFDF7] hover:bg-parchment text-ink font-bold text-base rounded-2xl border-3 border-ink shadow-md transition-all flex items-center justify-center"
+                  className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-[#FFFDF7] hover:bg-parchment text-ink font-bold text-sm sm:text-base rounded-2xl border-3 border-ink shadow-md transition-all flex items-center justify-center"
                 >
                   Sign In to Library
                 </Link>
               </div>
 
               {/* Safety badge */}
-              <div className="pt-2 flex items-center justify-center lg:justify-start gap-4 text-xs font-bold text-ink/70">
+              <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-3 sm:gap-4 text-xs font-bold text-ink/70">
                 <div className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-meadow" />
+                  <ShieldCheck className="w-4 h-4 text-meadow shrink-0" />
                   <span>100% Child-Safe Content</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Heart className="w-4 h-4 text-berry" />
+                  <Heart className="w-4 h-4 text-berry shrink-0" />
                   <span>Illustrated Avatars (No Photos)</span>
                 </div>
               </div>
@@ -137,11 +137,11 @@ export const LandingPage = () => {
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-md">
                 {/* Decorative floating badge */}
-                <div className="absolute -top-6 -left-6 z-20 bg-[#FFFDF7] p-3 rounded-2xl border-2 border-ink shadow-lg flex items-center gap-3 transform -rotate-6">
-                  <AvatarPreview avatar={sampleAvatar} size={50} />
+                <div className="absolute -top-4 -left-2 sm:-top-6 sm:-left-6 z-20 bg-[#FFFDF7] p-2.5 sm:p-3 rounded-2xl border-2 border-ink shadow-lg flex items-center gap-2.5 sm:gap-3 transform -rotate-6">
+                  <AvatarPreview avatar={sampleAvatar} size={44} />
                   <div>
-                    <span className="block font-bold text-xs text-ink">Leo's Star Look</span>
-                    <span className="block text-[10px] text-berry font-extrabold uppercase">Starring Character</span>
+                    <span className="block font-bold text-[11px] sm:text-xs text-ink">Leo's Star Look</span>
+                    <span className="block text-[9px] sm:text-[10px] text-berry font-extrabold uppercase">Starring Character</span>
                   </div>
                 </div>
 

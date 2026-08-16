@@ -137,13 +137,13 @@ export const CreateStoryPage = () => {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-8">
+        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
           {/* STEP 1: Select Starring Child */}
-          <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-4 border-ink shadow-parchment-card space-y-4">
+          <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-3 sm:border-4 border-ink shadow-parchment-card space-y-4">
             <div className="flex items-center justify-between">
               <div>
                 <span className="text-xs font-black uppercase tracking-wider text-berry">Step 1</span>
-                <h3 className="font-display font-bold text-2xl text-ink">
+                <h3 className="font-display font-bold text-xl sm:text-2xl text-ink">
                   Starring Character
                 </h3>
               </div>
@@ -151,11 +151,11 @@ export const CreateStoryPage = () => {
                 to="/children"
                 className="text-xs font-bold text-berry hover:underline flex items-center gap-1"
               >
-                <PlusCircle className="w-4 h-4" /> Add or Edit Children
+                <PlusCircle className="w-4 h-4" /> Add/Edit
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
               {children.map((child) => {
                 const isSelected = selectedChildId === child._id;
                 return (
@@ -163,17 +163,17 @@ export const CreateStoryPage = () => {
                     key={child._id}
                     type="button"
                     onClick={() => setSelectedChildId(child._id)}
-                    className={`p-4 rounded-2xl border-3 flex flex-col items-center text-center transition-all ${
+                    className={`p-3 sm:p-4 rounded-2xl border-3 flex flex-col items-center text-center transition-all ${
                       isSelected
-                        ? 'bg-parchment border-ink ring-4 ring-marigold/50 shadow-md scale-105'
+                        ? 'bg-parchment border-ink ring-4 ring-marigold/50 shadow-md scale-[1.02]'
                         : 'bg-[#FFFDF7]/60 border-ink/20 hover:border-ink/50 hover:bg-[#FFFDF7]'
                     }`}
                   >
-                    <AvatarPreview avatar={child.avatar} size={70} className="mb-2" />
-                    <span className="font-display font-bold text-base text-ink truncate w-full">
+                    <AvatarPreview avatar={child.avatar} size={60} className="mb-2 sm:w-[70px] sm:h-[70px]" />
+                    <span className="font-display font-bold text-sm sm:text-base text-ink truncate w-full">
                       {child.name}
                     </span>
-                    <span className="text-[11px] font-bold text-charcoal/70">
+                    <span className="text-[10px] sm:text-[11px] font-bold text-charcoal/70">
                       Ages {child.ageBand}
                     </span>
                   </button>
@@ -183,10 +183,10 @@ export const CreateStoryPage = () => {
           </div>
 
           {/* STEP 2: Story Theme */}
-          <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-4 border-ink shadow-parchment-card space-y-4">
+          <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-3 sm:border-4 border-ink shadow-parchment-card space-y-4">
             <div>
               <span className="text-xs font-black uppercase tracking-wider text-berry">Step 2</span>
-              <h3 className="font-display font-bold text-2xl text-ink">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-ink">
                 Story Adventure Theme
               </h3>
               <p className="text-xs text-charcoal/70 font-medium mt-0.5">
@@ -201,10 +201,10 @@ export const CreateStoryPage = () => {
           </div>
 
           {/* STEP 3: Art Style & Page Count */}
-          <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-4 border-ink shadow-parchment-card space-y-6">
+          <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-3 sm:border-4 border-ink shadow-parchment-card space-y-6">
             <div>
               <span className="text-xs font-black uppercase tracking-wider text-berry">Step 3</span>
-              <h3 className="font-display font-bold text-2xl text-ink">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-ink">
                 Illustration Style & Length
               </h3>
             </div>
@@ -214,13 +214,13 @@ export const CreateStoryPage = () => {
               <label className="block text-xs font-bold uppercase tracking-wider text-ink/80 mb-2">
                 Page Count
               </label>
-              <div className="grid grid-cols-3 gap-3 max-w-md">
+              <div className="grid grid-cols-3 gap-2.5 sm:gap-3 max-w-md">
                 {[4, 8, 12].map((count) => (
                   <button
                     key={count}
                     type="button"
                     onClick={() => setPageCount(count)}
-                    className={`py-3 px-4 rounded-xl border-3 font-display font-bold text-sm transition-all ${
+                    className={`py-2.5 sm:py-3 px-3 sm:px-4 rounded-xl border-3 font-display font-bold text-xs sm:text-sm transition-all ${
                       pageCount === count
                         ? 'bg-marigold text-ink border-ink ring-2 ring-ink shadow-md'
                         : 'bg-parchment/40 text-ink/80 border-ink/20 hover:border-ink/50'
@@ -244,15 +244,15 @@ export const CreateStoryPage = () => {
             </div>
           </div>
 
-          {/* STEP 4: Optional Custom Details with Server-Side Sanitization Notice */}
-          <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-4 border-ink shadow-parchment-card space-y-4">
+          {/* STEP 4: Optional Custom Details */}
+          <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-4 sm:p-8 border-3 sm:border-4 border-ink shadow-parchment-card space-y-4">
             <div>
               <span className="text-xs font-black uppercase tracking-wider text-berry">Step 4 (Optional)</span>
-              <h3 className="font-display font-bold text-2xl text-ink">
+              <h3 className="font-display font-bold text-xl sm:text-2xl text-ink">
                 Special Details or Companion
               </h3>
               <p className="text-xs text-charcoal/70 font-medium mt-0.5">
-                Add a favorite toy, pet, bedtime routine, or special lesson (e.g. "Maya loves her teddy bear Barnaby and learning to share").
+                Add a favorite toy, pet, bedtime routine, or special lesson.
               </p>
             </div>
 
@@ -262,12 +262,12 @@ export const CreateStoryPage = () => {
               value={customDetails}
               onChange={(e) => setCustomDetails(e.target.value)}
               placeholder="e.g. Include a friendly floppy-eared puppy who loves finding shiny pebbles..."
-              className="w-full p-4 bg-parchment/30 rounded-2xl border-2 border-ink/30 focus:border-berry focus:bg-white focus:outline-none font-bold text-sm text-ink leading-relaxed"
+              className="w-full p-3.5 sm:p-4 bg-parchment/30 rounded-2xl border-2 border-ink/30 focus:border-berry focus:bg-white focus:outline-none font-bold text-xs sm:text-sm text-ink leading-relaxed"
             />
 
-            <div className="flex items-center justify-between text-xs font-bold text-charcoal/60">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-bold text-charcoal/60">
               <span className="flex items-center gap-1 text-meadow">
-                <HeartHandshake className="w-3.5 h-3.5" /> Wholesome, age-appropriate content guaranteed
+                <HeartHandshake className="w-3.5 h-3.5" /> Wholesome, kid-safe content guaranteed
               </span>
               <span>{customDetails.length}/300 chars</span>
             </div>
@@ -278,10 +278,12 @@ export const CreateStoryPage = () => {
             <button
               type="submit"
               disabled={isSubmitting || !selectedChildId}
-              className="w-full py-5 bg-berry hover:bg-berry-dark text-white font-display font-black text-xl rounded-2xl border-4 border-ink shadow-lg hover:shadow-xl transition-all transform active:scale-98 disabled:opacity-50 flex items-center justify-center gap-3"
+              className="w-full py-4 sm:py-5 bg-berry hover:bg-berry-dark text-white font-display font-black text-base sm:text-xl rounded-2xl border-3 sm:border-4 border-ink shadow-lg hover:shadow-xl transition-all transform active:scale-98 disabled:opacity-50 flex items-center justify-center gap-2 sm:gap-3"
             >
-              <Sparkles className="w-6 h-6 text-marigold fill-marigold" />
-              <span>{isSubmitting ? 'Queueing Generation...' : `Generate Storybook for ${selectedChild?.name || 'Child'} ✨`}</span>
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-marigold fill-marigold shrink-0" />
+              <span className="truncate">
+                {isSubmitting ? 'Queueing Generation...' : `Generate Storybook for ${selectedChild?.name || 'Child'} ✨`}
+              </span>
             </button>
           </div>
         </form>

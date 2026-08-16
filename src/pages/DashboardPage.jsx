@@ -60,31 +60,31 @@ export const DashboardPage = () => {
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Welcome Header */}
-        <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-10 border-4 border-ink shadow-parchment-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="inline-flex items-center gap-2 text-berry font-black text-xs uppercase tracking-wider">
+        <div className="bg-[#FFFDF7] rounded-2xl sm:rounded-3xl p-5 sm:p-10 border-3 sm:border-4 border-ink shadow-parchment-card flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
+          <div className="space-y-1.5 sm:space-y-2">
+            <div className="inline-flex items-center gap-1.5 text-berry font-black text-xs uppercase tracking-wider">
               <Sparkles className="w-4 h-4 text-marigold fill-marigold" />
               <span>Parent Studio Dashboard</span>
             </div>
-            <h1 className="font-display font-black text-3xl sm:text-4xl text-ink">
+            <h1 className="font-display font-black text-2xl sm:text-4xl text-ink">
               Welcome, {user?.name || 'Storyteller'}!
             </h1>
-            <p className="font-reading text-base text-charcoal/80">
+            <p className="font-reading text-sm sm:text-base text-charcoal/80">
               Pick a child, craft a story theme, and create custom illustrated books together.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full md:w-auto">
             <Link
               to="/children"
-              className="px-5 py-3 bg-parchment hover:bg-parchment-dark text-ink font-bold text-sm rounded-xl border-2 border-ink transition-colors flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto px-4 py-2.5 sm:px-5 sm:py-3 bg-parchment hover:bg-parchment-dark text-ink font-bold text-xs sm:text-sm rounded-xl border-2 border-ink transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <Users className="w-4 h-4 text-meadow" />
               <span>Manage Children</span>
             </Link>
             <Link
               to="/create"
-              className="px-6 py-3 bg-marigold hover:bg-marigold-dark text-ink font-black text-sm rounded-xl border-2 border-ink shadow-md hover:shadow-lg transition-all transform active:scale-95 flex items-center gap-2"
+              className="w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-3 bg-marigold hover:bg-marigold-dark text-ink font-black text-xs sm:text-sm rounded-xl border-2 border-ink shadow-md hover:shadow-lg transition-all transform active:scale-95 flex items-center justify-center gap-2"
             >
               <Wand2 className="w-4 h-4 text-ink" />
               <span>New Story Wizard</span>
