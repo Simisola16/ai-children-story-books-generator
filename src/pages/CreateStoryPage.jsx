@@ -5,6 +5,7 @@ import { ThemeSelector, STORY_THEMES } from '../components/wizard/ThemeSelector'
 import { StyleSelector, ART_STYLES } from '../components/wizard/StyleSelector';
 import { AvatarPreview } from '../components/avatar/AvatarBuilder';
 import { Sparkles, Wand2, PlusCircle, AlertCircle, ShieldAlert, HeartHandshake } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const CreateStoryPage = () => {
   const [searchParams] = useSearchParams();
@@ -109,6 +110,11 @@ export const CreateStoryPage = () => {
 
   return (
     <div className="min-h-screen bg-parchment-pattern py-8 sm:py-12">
+      <SEO
+        title="Create a Magical Storybook"
+        description="Pick story themes, art styles, learning morals, and customize a personalized picture book starring your child."
+        noIndex={true}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Wizard Header */}
         <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-8 border-4 border-ink shadow-parchment-card">

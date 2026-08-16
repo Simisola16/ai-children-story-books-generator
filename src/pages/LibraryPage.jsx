@@ -4,6 +4,7 @@ import { api } from '../services/api';
 import { Bookshelf } from '../components/library/Bookshelf';
 import { AvatarPreview } from '../components/avatar/AvatarBuilder';
 import { Library as LibraryIcon, Sparkles, Filter, Users, PlusCircle } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const LibraryPage = () => {
   const [children, setChildren] = useState([]);
@@ -54,6 +55,11 @@ export const LibraryPage = () => {
 
   return (
     <div className="min-h-screen bg-parchment-pattern py-8 sm:py-12">
+      <SEO
+        title="My Storybook Library & Bookshelf"
+        description="Browse all your created picture books, read in interactive 3D, and download printable PDFs."
+        noIndex={true}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Library Header */}
         <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-10 border-4 border-ink shadow-parchment-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

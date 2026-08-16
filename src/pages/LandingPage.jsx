@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Sparkles, Wand2, Download, Volume2, ShieldCheck, Heart, ArrowRight } from 'lucide-react';
+import {
+  BookOpen,
+  Sparkles,
+  Wand2,
+  Download,
+  Volume2,
+  ShieldCheck,
+  Heart,
+  ArrowRight,
+  ChevronDown,
+  Star,
+  CheckCircle2,
+} from 'lucide-react';
 import { AvatarPreview } from '../components/avatar/AvatarBuilder';
+import { SEO } from '../components/common/SEO';
 
 export const LandingPage = () => {
+  const [openFaq, setOpenFaq] = useState(null);
+
   const sampleAvatar = {
     skinTone: '#F5D0A9',
     hairStyle: 'curly',
@@ -13,8 +28,53 @@ export const LandingPage = () => {
     accessory: 'crown',
   };
 
+  const faqs = [
+    {
+      q: 'How does the AI create personalized storybooks for my child?',
+      a: 'You create a custom illustrated character look with hairstyles, outfits, and accessories. Then, pick a story genre (space exploration, underwater kingdom, bedtime calm, etc.) and learning moral. Our AI generates an original, engaging story matching your child’s age, alongside vivid full-page illustrations depicting their custom avatar on every page.',
+    },
+    {
+      q: 'Is the content 100% safe and appropriate for young children?',
+      a: 'Yes, absolutely. All generated stories and illustrations undergo multi-layer kid-safe content filters. Stories promote positive values like kindness, courage, honesty, empathy, and bedtime relaxation.',
+    },
+    {
+      q: 'Can I download and print the storybooks as keepsakes?',
+      a: 'Yes! Every story comes with a high-resolution, landscape-oriented PDF download. It includes a custom illustrated cover, facing page layouts, and a moral badge — perfect for home printing, laminating, or bedtime reading.',
+    },
+    {
+      q: 'How does the 3D page-turn reader and read-aloud work?',
+      a: 'Our interactive web reader simulates a real physical picture book with dual-page spreads, 3D flip animations, and natural center-gutter depth. An integrated read-aloud button uses text-to-speech to narrate each page aloud to your child.',
+    },
+    {
+      q: 'What age ranges are supported?',
+      a: 'AI Storybook Generator supports toddlers and children from ages 2 to 10+ (Toddler 2–4, Early Reader 5–7, and Young Explorer 8–10), tailoring vocabulary, sentence complexity, and themes accordingly.',
+    },
+  ];
+
+  // FAQ Schema for Rich Google Search Snippets
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.a,
+      },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-parchment-pattern">
+      <SEO
+        title="Magical Personalized Tales & Bedtime Stories for Children"
+        description="Create personalized, beautifully illustrated children's storybooks featuring your child as the star character. Read online with 3D page-turns or download printable PDFs."
+        keywords="personalized children books, AI storybook generator, custom bedtime stories, illustrated kids books, avatar story creator, printable storybook PDF"
+        canonical="/"
+        structuredData={faqSchema}
+      />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-12 pb-20 sm:pt-16 sm:pb-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,6 +104,7 @@ export const LandingPage = () => {
               <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link
                   to="/register"
+                  id="hero-create-story-btn"
                   className="px-8 py-4 bg-berry hover:bg-berry-dark text-white font-black text-base rounded-2xl border-3 border-ink shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-3"
                 >
                   <Sparkles className="w-5 h-5 text-marigold fill-marigold" />
@@ -52,6 +113,7 @@ export const LandingPage = () => {
                 </Link>
                 <Link
                   to="/login"
+                  id="hero-sign-in-btn"
                   className="px-8 py-4 bg-[#FFFDF7] hover:bg-parchment text-ink font-bold text-base rounded-2xl border-3 border-ink shadow-md transition-all flex items-center justify-center"
                 >
                   Sign In to Library
@@ -165,6 +227,136 @@ export const LandingPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Interactive FAQ Section for Parents & Organic SEO */}
+      <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-marigold/30 text-ink font-bold text-xs uppercase tracking-wider mb-3">
+            <Star className="w-3.5 h-3.5 fill-marigold text-ink" />
+            <span>Got Questions?</span>
+          </div>
+          <h2 className="font-display font-black text-3xl sm:text-4xl text-ink">
+            Frequently Asked Questions
+          </h2>
+          <p className="mt-2 text-charcoal/80 text-base">
+            Everything you need to know about our AI storybooks and printable keepsakes.
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, idx) => {
+            const isOpen = openFaq === idx;
+            return (
+              <div
+                key={idx}
+                className="bg-[#FFFDF7] rounded-2xl border-2 border-ink/20 overflow-hidden shadow-sm transition-all"
+              >
+                <button
+                  type="button"
+                  id={`faq-toggle-${idx}`}
+                  onClick={() => setOpenFaq(isOpen ? null : idx)}
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 font-display font-bold text-base sm:text-lg text-ink hover:text-berry transition-colors"
+                  aria-expanded={isOpen}
+                >
+                  <span className="flex items-center gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-berry shrink-0" />
+                    <span>{faq.q}</span>
+                  </span>
+                  <ChevronDown
+                    className={`w-5 h-5 text-ink/60 shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 text-berry' : ''
+                    }`}
+                  />
+                </button>
+                {isOpen && (
+                  <div className="px-6 pb-6 pt-1 text-charcoal/90 text-sm sm:text-base font-reading leading-relaxed border-t border-ink/10">
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Bottom CTA Banner */}
+      <section className="py-16 bg-gradient-to-r from-berry via-berry-dark to-ink text-white">
+        <div className="max-w-5xl mx-auto px-4 text-center space-y-6">
+          <Sparkles className="w-10 h-10 text-marigold mx-auto animate-pulse" />
+          <h2 className="font-display font-black text-3xl sm:text-5xl text-parchment">
+            Start Your Child's Magical Adventure Today
+          </h2>
+          <p className="font-reading text-lg sm:text-xl text-parchment-light max-w-2xl mx-auto">
+            Join parents worldwide bringing bedtime to life with custom-illustrated storybooks.
+          </p>
+          <div className="pt-2">
+            <Link
+              to="/register"
+              id="cta-bottom-register"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-marigold hover:bg-amber-400 text-ink font-black text-lg rounded-2xl border-3 border-ink shadow-xl transition-all transform hover:-translate-y-1"
+            >
+              <span>Create a Free Story Now</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Semantic Footer with SEO Links */}
+      <footer className="bg-parchment-dark border-t-2 border-ink/20 py-12 text-ink">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="md:col-span-2 space-y-3">
+            <div className="flex items-center gap-2 font-display font-black text-xl text-ink">
+              <span>📖</span>
+              <span>AI Storybook Generator</span>
+            </div>
+            <p className="text-xs text-charcoal/80 max-w-sm leading-relaxed">
+              Personalized children's picture books created with safe AI, custom avatar builder, 3D flipbook reading, and high-quality PDF downloads.
+            </p>
+            <p className="text-[11px] text-charcoal/60 pt-2">
+              © {new Date().getFullYear()} AI Storybook Generator. All rights reserved.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-display font-bold text-sm text-ink uppercase tracking-wider mb-3">
+              Explore
+            </h4>
+            <ul className="space-y-2 text-xs font-semibold text-charcoal/80">
+              <li>
+                <Link to="/register" className="hover:text-berry transition-colors">
+                  Create First Story
+                </Link>
+              </li>
+              <li>
+                <Link to="/login" className="hover:text-berry transition-colors">
+                  Sign In to Library
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-display font-bold text-sm text-ink uppercase tracking-wider mb-3">
+              Story Formats
+            </h4>
+            <ul className="space-y-2 text-xs font-semibold text-charcoal/80">
+              <li className="flex items-center gap-1.5">
+                <span>✨</span> Custom Character Avatars
+              </li>
+              <li className="flex items-center gap-1.5">
+                <span>📖</span> 3D Virtual Page Flip Reader
+              </li>
+              <li className="flex items-center gap-1.5">
+                <span>🔊</span> Text-to-Speech Audio Read-Aloud
+              </li>
+              <li className="flex items-center gap-1.5">
+                <span>📄</span> High-Res Printable PDFs
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

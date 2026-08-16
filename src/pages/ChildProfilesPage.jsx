@@ -3,6 +3,7 @@ import { api } from '../services/api';
 import { AvatarBuilder, AvatarPreview } from '../components/avatar/AvatarBuilder';
 import { Sparkles, PlusCircle, Edit3, Trash2, X, Check, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/common/SEO';
 
 const DEFAULT_AVATAR = {
   skinTone: '#F5D0A9',
@@ -113,6 +114,11 @@ export const ChildProfilesPage = () => {
 
   return (
     <div className="min-h-screen bg-parchment-pattern py-8 sm:py-12">
+      <SEO
+        title="Child Profiles & Avatar Studio"
+        description="Customize avatar looks, hair styles, outfits, and manage child character profiles for personalized picture books."
+        noIndex={true}
+      />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#FFFDF7] p-6 sm:p-8 rounded-3xl border-4 border-ink shadow-parchment-card">

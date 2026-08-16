@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Sparkles, AlertCircle, Heart } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -36,6 +37,11 @@ export const RegisterPage = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-4 sm:p-6 bg-parchment-pattern">
+      <SEO
+        title="Create Parent Account — Free AI Children's Story Generator"
+        description="Sign up for free to start creating personalized illustrated children's storybooks starring your child. Customize avatars, pick themes, and download printable PDFs."
+        canonical="/register"
+      />
       <div className="w-full max-w-md bg-[#FFFDF7] rounded-3xl p-8 sm:p-10 border-4 border-ink shadow-parchment-card">
         {/* Header */}
         <div className="text-center mb-8">

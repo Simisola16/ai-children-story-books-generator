@@ -5,6 +5,7 @@ import { api } from '../services/api';
 import { AvatarPreview } from '../components/avatar/AvatarBuilder';
 import { Bookshelf } from '../components/library/Bookshelf';
 import { Sparkles, PlusCircle, Users, BookOpen, Library, Wand2 } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const DashboardPage = () => {
   const { user } = useAuth();
@@ -52,6 +53,11 @@ export const DashboardPage = () => {
 
   return (
     <div className="min-h-screen bg-parchment-pattern py-8 sm:py-12">
+      <SEO
+        title="Parent Dashboard"
+        description="Manage your child character profiles, review generated picture books, and launch new AI storybook adventures."
+        noIndex={true}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Welcome Header */}
         <div className="bg-[#FFFDF7] rounded-3xl p-6 sm:p-10 border-4 border-ink shadow-parchment-card flex flex-col md:flex-row items-start md:items-center justify-between gap-6">

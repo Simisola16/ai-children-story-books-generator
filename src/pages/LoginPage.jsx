@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { BookOpen, Sparkles, AlertCircle } from 'lucide-react';
+import { SEO } from '../components/common/SEO';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -29,6 +30,11 @@ export const LoginPage = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] flex items-center justify-center p-4 sm:p-6 bg-parchment-pattern">
+      <SEO
+        title="Sign In to Your Storybook Library"
+        description="Sign in to your AI Storybook Generator account to view your children's profiles, read saved books, and generate new personalized bedtime stories."
+        canonical="/login"
+      />
       <div className="w-full max-w-md bg-[#FFFDF7] rounded-3xl p-8 sm:p-10 border-4 border-ink shadow-parchment-card">
         {/* Header */}
         <div className="text-center mb-8">

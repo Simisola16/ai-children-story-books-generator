@@ -1,0 +1,13 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /login
+Allow: /register
+Allow: /stories/
+Disallow: /dashboard
+Disallow: /create
+Disallow: /children
+Disallow: /library
+
+# Sitemaps
+Sitemap: https://childrenstorybooksgenerator.vercel.app/sitemap.xml

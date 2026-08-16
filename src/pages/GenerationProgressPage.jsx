@@ -4,6 +4,7 @@ import { useSocket } from '../context/SocketContext';
 import { api } from '../services/api';
 import { Sparkles, BookOpen, Wand2, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { SEO } from '../components/common/SEO';
 
 export const GenerationProgressPage = () => {
   const { id: storyId } = useParams();
@@ -123,6 +124,11 @@ export const GenerationProgressPage = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-parchment-pattern py-10 px-4 sm:px-6 flex items-center justify-center">
+      <SEO
+        title="Generating Storybook..."
+        description="Weaving your custom picture book with AI story generation and page-by-page illustrations."
+        noIndex={true}
+      />
       <div className="max-w-2xl w-full bg-[#FFFDF7] rounded-3xl p-8 sm:p-12 border-4 border-ink shadow-parchment-card text-center space-y-8">
         {/* Animated Icon */}
         <div className="relative w-24 h-24 mx-auto">
