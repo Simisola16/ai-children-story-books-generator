@@ -1,7 +1,7 @@
 const getApiBaseUrl = () => {
   if (import.meta.env.VITE_API_URL) return import.meta.env.VITE_API_URL;
   if (typeof window !== 'undefined' && !window.location.hostname.includes('localhost') && !window.location.hostname.includes('127.0.0.1')) {
-    return 'https://ai-children-story-books-generator-backend.onrender.com/api';
+    return 'https://ai-children-story-books-generator-b.vercel.app/api';
   }
   return 'http://localhost:5000/api';
 };
@@ -91,7 +91,7 @@ export const api = {
 
   // PDF Export Download URL Helper
   getStoryPdfUrl: (storyId) => `${API_BASE_URL}/stories/${storyId}/pdf`,
-  
+
   downloadPdf: async (storyId, filename = 'Storybook.pdf') => {
     const token = localStorage.getItem('storybook_token');
     const response = await fetch(`${API_BASE_URL}/stories/${storyId}/pdf`, {
