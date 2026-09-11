@@ -53,6 +53,12 @@ const PublicRoute = ({ children }) => {
   return children;
 };
 
+// Redirect helper for direct ID routes (e.g., /:id/generating -> /stories/:id/generating)
+const StoryIdRedirect = ({ isGenerating }) => {
+  const { id } = useParams();
+  return <Navigate to={isGenerating ? `/stories/${id}/generating` : `/stories/${id}`} replace />;
+};
+
 function App() {
   return (
     <BrowserRouter>
@@ -127,6 +133,16 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <LibraryPage />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* Alias routes for direct story IDs without /stories/ prefix */}
+                <Route
+                  path="/:id/generating"
+                  element={
+                    <ProtectedRoute>
+                      <StoryIdRedirect isGenerating={true} />
                     </ProtectedRoute>
                   }
                 />
